@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UserServiceImpService WSDL service -->
+
+  <service name="UserServiceImp" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.soap.guru"/>
+      <parameter name="wsdlServiceElement" value="UserServiceImpService"/>
+      <parameter name="schemaQualified" value="http://model.soap.guru,http://service.soap.guru"/>
+      <parameter name="wsdlServicePort" value="UserServiceImp"/>
+      <parameter name="className" value="guru.soap.service.UserServiceImpSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="UserServiceImp"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getUser" qname="operNS:getUser" xmlns:operNS="http://service.soap.guru" returnQName="retNS:getUserReturn" xmlns:retNS="http://service.soap.guru" returnType="rtns:User" xmlns:rtns="http://model.soap.guru" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.soap.guru" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="deleteUser" qname="operNS:deleteUser" xmlns:operNS="http://service.soap.guru" returnQName="retNS:deleteUserReturn" xmlns:retNS="http://service.soap.guru" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.soap.guru" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addUser" qname="operNS:addUser" xmlns:operNS="http://service.soap.guru" returnQName="retNS:addUserReturn" xmlns:retNS="http://service.soap.guru" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://service.soap.guru" type="tns:User" xmlns:tns="http://model.soap.guru"/>
+      </operation>
+      <operation name="getAllPersons" qname="operNS:getAllPersons" xmlns:operNS="http://service.soap.guru" returnQName="retNS:getAllPersonsReturn" xmlns:retNS="http://service.soap.guru" returnType="rtns:User" xmlns:rtns="http://model.soap.guru" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="addUser getUser deleteUser getAllPersons"/>
+
+      <typeMapping
+        xmlns:ns="http://model.soap.guru"
+        qname="ns:User"
+        type="java:guru.soap.model.User"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

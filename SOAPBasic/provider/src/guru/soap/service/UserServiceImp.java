@@ -37,8 +37,8 @@ public class UserServiceImp implements UserInterface{
 
 	@Override
 	public User[] getAllPersons() {
-		ArrayList<User> alUser = users.values().stream().collect(Collectors.toCollection(ArrayList::new));
-		return (User[]) alUser.toArray();
+		
+		return null;
 	}
 
 }
