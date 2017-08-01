@@ -1,0 +1,9 @@
+Apache Axis
+
+@Webservice annotation makes the class a soap service.
+
+Used SOAP UI as well as the Eclipse Test client to test the soap application.
+
+Endpoint.publish ("url", nd instance of a class); //without deploying the application in server.
+
+at the url you can get the wsdl
