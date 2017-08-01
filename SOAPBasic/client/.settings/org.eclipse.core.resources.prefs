@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/guru/soap/model/User.java=UTF-8
+encoding//src/guru/soap/service/UserServiceImp.java=UTF-8
+encoding//src/guru/soap/service/UserServiceImpService.java=UTF-8
+encoding//src/guru/soap/service/UserServiceImpServiceLocator.java=UTF-8
+encoding//src/guru/soap/service/UserServiceImpSoapBindingStub.java=UTF-8
